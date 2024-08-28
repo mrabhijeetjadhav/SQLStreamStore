@@ -27,7 +27,7 @@
     IF (@position IS NULL)
         BEGIN
             SELECT @position = MIN(dbo.Messages.Position)
-              FROM dbo.Messages 
+              FROM dbo.Messages WITH (FORCESEEK)
              WHERE dbo.Messages.StreamIdInternal = @streamIdInternal AND dbo.Messages.StreamVersion >= @streamVersion
         END
 
